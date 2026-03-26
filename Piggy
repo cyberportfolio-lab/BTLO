@@ -1,0 +1,71 @@
+
+PCAP One) What remote IP address was used to transfer data over SSH? (Format: X.X.X.X)(3 points)
+
+Answer: 35.211.33.16
+
+Explanation: 
+
+	- Filtered on SSH and then Statistics -> Conversations
+	- IP addresses within 10.0.0.0 - 10.255.255.255 are internal IP address ranges (RFC 1918)
+	- 10.0.9.171 -> 35.211.33.16 shows 1123 M bytes of data exfiltrated. 
+
+
+PCAP One) How much data was transferred in total? (Format: XXXX M)(3 points)
+
+Answer: 1123 M
+
+PCAP Two) Review the IPs the infected system has communicated with. Perform OSINT searches to identify the malware family tied to this infrastructure (Format: MalwareName)(3 points)
+
+Answer: Trickbot
+
+Explanation: 
+	- Filtered on ip and then Statistics -> Conversations
+	- VirusTotal each IP address. 31.184.253.37 seems the most suspicious based on all results. Highly malicious.
+	- Google searched the malicious IP address and found the malware name "trickbot"
+
+
+PCAP Three) Review the two IPs that are communicating on an unusual port. What are the two ASN numbers these IPs belong to? (Format: ASN, ASN)(3 points)
+
+Answer: AS63949,  AS14061
+
+Explanation:
+	- Filter on "ip". Then click on Statistics -> Destinations and Ports.
+	- Based on the results, I have shorten my selection by:
+		○ Eliminated standard ports like 53, 443. 
+		○ Eliminated 10.0.9.171 because that is the infected system (internal IP address). 
+	- 194.233.171.171 on port TCP 8080 and 104.236.57.24 on port 8000
+	- whois lookup these IP address to get the ASN
+
+
+
+PCAP Three) Perform OSINT checks. What malware category have these IPs been attributed to historically? (Format: MalwareType)(3 points)
+
+Answer: Miner
+
+Explanation: 
+	- Used VirusTotal to identify Malware type.
+
+
+PCAP Three) What ATT&CK technique is most closely related to this activity? (Format: TXXXX)(3 points)
+
+Answer: T1496
+
+Explanation: Used MITRE ATT&CK website. 
+
+
+
+PCAP Four) Go to View > Time Display Format > Seconds Since Beginning of Capture. How long into the capture was the first TXT record query made? (Use the default time, which is seconds since the packet capture started) (Format: X.xxxxxx)(3 points)
+
+Answer: 8.527712
+
+Explanation: Filter for "dns" and then control + f to find "TXT" record.
+
+
+
+PCAP Four) Go to View > Time Display Format > UTC Date and Time of Day. What is the date and timestamp? (Format: YYYY-MM-DD HH:MM:SS)(3 points)
+
+Answer: 2024-05-24 10:08:50
+
+Explanation: Same explanation as previous question, except this time, changed the event time format.
+
+)
